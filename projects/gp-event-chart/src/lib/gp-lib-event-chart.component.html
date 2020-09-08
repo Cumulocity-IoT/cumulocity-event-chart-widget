@@ -1,0 +1,37 @@
+<div > 
+	<div style="height: 40px;">
+		<div style ="float: right; margin-right: 10px;">
+		  <button type="button" class="btn btn-link c8y-realtime" title="Toggle realtime" (click)="toggle()" >
+			<span [ngClass]="realtimeState?'c8y-pulse active' : 'c8y-pulse inactive'" ></span>
+			<span >Realtime</span>
+		  </button>
+		  <button mat-icon-button style="color:#1776BF;" type="button" class="button" (click) = "refresh()" ><span class="fa fa-refresh"></span></button>
+		  </div>
+	  </div>
+	<div class="datePickerDiv">
+		<mat-form-field appearance="outline" class="date-input">
+			<input matInput [matDatepicker]="fromPicker" placeholder="From"  (dateInput) ="dateChanged('from',$event)" [value]="fromDate"/>
+			<mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+			<mat-datepicker #fromPicker></mat-datepicker>
+		  </mat-form-field>
+			<mat-form-field appearance="outline" class="date-input">
+			  <input matInput [matDatepicker]="toPicker" placeholder="To" (dateInput) ="dateChanged('to',$event)" [value]="toDate" />
+			  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+			  <mat-datepicker #toPicker></mat-datepicker>
+		  </mat-form-field>
+		  <button type="button" title="Filter date range" class="btn btn-default " (click)="filter()">
+			<i c8y-icon="filter" class="fa fw fa-filter"></i>
+		  </button>
+	</div>
+	<div *ngIf="dataLoaded | async">
+		<div style="display: block">
+			<canvas baseChart
+				[datasets]="barChartData"
+				[labels]="barChartLabels"
+				[colors]="barChartColors"
+				[options]="barChartOptions"
+				[chartType]="barChartType">
+			</canvas>
+		</div>
+	 </div>
+  </div>

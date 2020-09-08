@@ -1,0 +1,69 @@
+/**
+ * Copyright (c) 2020 Software AG, Darmstadt, Germany and/or its licensors
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {CoreModule, HOOK_COMPONENTS} from '@c8y/ngx-components';
+import { NgModule } from '@angular/core';
+import { GpLibEventChartComponent } from './gp-lib-event-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { GpLibEventChartConfig } from './gp-lib-event-chart.config';
+import {MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatButtonModule } from '@angular/material';
+import { DatePipe } from '@angular/common';
+import { ColorPickerModule } from './color-picker/color-picker-module';
+import * as preview from './preview-image';
+
+@NgModule({
+  declarations: [GpLibEventChartComponent, GpLibEventChartConfig],
+  imports: [
+    CoreModule,
+    ChartsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    ColorPickerModule
+  ],
+  exports: [GpLibEventChartComponent, GpLibEventChartConfig],
+  entryComponents: [GpLibEventChartComponent, GpLibEventChartConfig],
+  providers: [
+    DatePipe,
+    {
+        provide: HOOK_COMPONENTS,
+        multi: true,
+        useValue: {
+            id: 'event chart widget',
+            label: 'Event Chart',
+            description: 'Event Chart Module',
+            previewImage: preview.previewImage,
+            component: GpLibEventChartComponent,
+            configComponent: GpLibEventChartConfig,
+            data : {
+                ng1 : {
+                    options: {
+                        noDeviceTarget: false,
+                        noNewWidgets: false,
+                        deviceTargetNotRequired: false,
+                        groupsSelectable: true
+                    }
+                }
+            }
+        }
+    }
+  ],
+})
+export class GpLibEventChartModule { }
