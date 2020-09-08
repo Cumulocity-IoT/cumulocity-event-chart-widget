@@ -236,11 +236,8 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
       source: deviceId,
       type: this.config.eventType,
     };
-    // tslint:disable-next-line: deprecation
     const { data, res, paging } = await this.events.list(filter);
     console.log('data', data);
-    // this.events.list$(filter).subscribe( async (res) => {
-    //   console.log('REsponse', res);
     const promises = data.map((singleRecord) => {
       if (this.fromDate === '' || this.toDate === '') {
         console.log('update data set called');
@@ -253,7 +250,6 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
     });
     await Promise.all(promises);
     return dataSet;
-    // });
   }
 /** based on the configuration and event record dataset is created  */
   updateDataset(singleRecord, dataSet) {
