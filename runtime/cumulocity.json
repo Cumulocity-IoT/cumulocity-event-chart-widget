@@ -1,0 +1,12 @@
+{
+  "name": "Event Chart Runtime Widget",
+  "contextPath": "event-chart-runtime-widget",
+  "key": "event-chart-runtime-widget-application-key",
+  "contentSecurityPolicy": "default-src 'self'",
+  "icon": {
+    "class": "fa fa-puzzle-piece"
+  },
+  "manifest": {
+    "noAppSwitcher": true
+  }
+}
