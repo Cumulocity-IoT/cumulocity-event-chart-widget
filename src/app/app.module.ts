@@ -21,7 +21,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BasicAuth, Client, InventoryService, EventService, Realtime } from '@c8y/client';
-import { GpLibEventChartModule } from '../../projects/gp-lib-event-chart/src/lib/gp-lib-event-chart.module';
+import { GpLibEventChartModule } from '../../projects/gp-event-chart/src/lib/gp-lib-event-chart.module';
 
 
 const auth = new BasicAuth({

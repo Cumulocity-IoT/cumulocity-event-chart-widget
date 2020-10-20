@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gp-event-chart": {
+    "gp-event-chart-application": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gp-event-chart",
+            "outputPath": "dist/gp-event-chart-application",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,19 +63,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gp-event-chart:build",
+            "browserTarget": "gp-event-chart-application:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gp-event-chart:build:production"
+              "browserTarget": "gp-event-chart-application:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gp-event-chart:build"
+            "browserTarget": "gp-event-chart-application:build"
           }
         },
         "test": {
@@ -112,11 +112,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "gp-event-chart:serve"
+            "devServerTarget": "gp-event-chart-application:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "gp-event-chart:serve:production"
+              "devServerTarget": "gp-event-chart-application:serve:production"
             }
           }
         }
