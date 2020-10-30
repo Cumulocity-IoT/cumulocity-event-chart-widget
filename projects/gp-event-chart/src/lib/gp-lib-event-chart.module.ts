@@ -21,13 +21,16 @@ import { NgModule } from '@angular/core';
 import { GpLibEventChartComponent } from './gp-lib-event-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { GpLibEventChartConfig } from './gp-lib-event-chart.config';
-import {MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatButtonModule } from '@angular/material';
+import {MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatButtonModule, MatRadioModule } from '@angular/material';
 import { DatePipe } from '@angular/common';
-import { ColorPickerModule } from './color-picker/color-picker-module';
 import * as preview from './preview-image';
 
+import { ColorPickerComponent } from './color-picker/color-picker-component';
+import { ColorSliderComponent } from './color-picker/color-slider/color-slider-component';
+import { ColorPaletteComponent } from './color-picker/color-palette/color-palette-component';
 @NgModule({
-  declarations: [GpLibEventChartComponent, GpLibEventChartConfig],
+  declarations: [GpLibEventChartComponent, GpLibEventChartConfig, 
+    ColorPickerComponent, ColorSliderComponent, ColorPaletteComponent],
   imports: [
     CoreModule,
     ChartsModule,
@@ -36,10 +39,10 @@ import * as preview from './preview-image';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    ColorPickerModule
+    MatRadioModule
   ],
-  exports: [GpLibEventChartComponent, GpLibEventChartConfig],
-  entryComponents: [GpLibEventChartComponent, GpLibEventChartConfig],
+  exports: [GpLibEventChartComponent, GpLibEventChartConfig, ColorPickerComponent],
+  entryComponents: [GpLibEventChartComponent, GpLibEventChartConfig, ColorPickerComponent],
   providers: [
     DatePipe,
     {

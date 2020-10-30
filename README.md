@@ -1,16 +1,8 @@
-# Cumulocity Widget - Event Chart 
+# Cumulocity Widget - Event Chart [<img width="35" src="https://user-images.githubusercontent.com/67993842/97668428-f360cc80-1aa7-11eb-8801-da578bda4334.png"/>](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/1.0.0/event-chart-runtime-widget-1.0.0.zip)
 
 ##  Overview
 
   This is an Angular 8 widget, which is designed to display the chart for the specific event type. It groups the events based on the entered group by parameter and displays the count for each group by parameter value. To display event chart for days enter the group by parameter as 'days' in configuration.
-
-  To deliver the expected functionality one need to set/select the following configuration parameters:
-  1. Event Type(required)
-  2. Group by(required), 
-  2. Filter(Optional)
-  3. Legend (select - Top/Left/None)
-  4. Device/Group (select)
-  5. Chart Type(required)
 
 
   The charts available include
@@ -28,10 +20,6 @@
 
   * Stack Chart
 
-  * Scatter Chart (Data set not ideal for this chart)
-
-  * Bubble Chart (Data set not ideal for this chart)
-
   The widget also comes with an inbuilt color picker, which helps one to customize chart/border colors.
 
 ## Usecase
@@ -46,16 +34,24 @@
 *  **Supports Grouped charts and stack Charts:** Based on filter type selected in configuration.
 *  **Supports different flavors charts:** Based on chart type field in configuration.
 
-## Installation
-  
-**Supported Cumulocity Environments:**
+## Supported Cumulocity Environments:**
   
 *  **App Builder:** Tested with Cumulocity App Builder version 1.2.1.
   
 *  **Cockpit Application:** Tested with Cockpit 1006.3.0 with [Patch Fix](https://www.npmjs.com/package/cumulocity-runtime-widget-loader).
 
+<<<<<<< HEAD
 **Runtime Widget Deployment:**
 * This widget support runtime deployment. Download [Runtime Binary](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/1.0.0/runtime-widget.zip) and follow runtime deployment instructions from [here](https://github.com/SoftwareAG/cumulocity-runtime-widget-loader).
+=======
+## Installation
+  
+### Runtime Widget Deployment?
+
+* This widget support runtime deployment. Download [Runtime Binary](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/1.0.0/event-chart-runtime-widget-1.0.0.zip) and follow runtime deployment instruction from [here](https://github.com/SoftwareAG/cumulocity-runtime-widget-loader).
+
+### Installation of widget through Appbuilder or Cockipt Deployment?
+>>>>>>> dev
 
 **Prerequisites:**
   
@@ -108,7 +104,7 @@
 
       Installation command :  ```npm i chart.js@2.9.3 ``` 
 
-2. Grab the Event Chart **[Latest Release Binary](https://labcase.softwareag.com/projects/gp-event-chart/storage/show/Releases/gp-event-chart-1.0.0.tgz)**
+2. Grab the Event Chart **[Latest Release Binary](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/1.0.0/gp-event-chart-1.0.0.tgz)**
 
 3. Install the Binary file in app builder.
 
@@ -176,7 +172,7 @@ npm run deploy
 
       Installation command :  ```npm i chart.js@2.9.3 ``` 
 
-2. Grab the Event Chart **[Latest Release Binary](https://labcase.softwareag.com/projects/gp-event-chart/storage/show/Releases/gp-event-chart-1.0.0.tgz)**
+2. Grab the Event Chart **[Latest Release Binary](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/1.0.0/gp-event-chart-1.0.0.tgz)**
 
 3. Install the Binary file in app builder.
 
@@ -245,7 +241,7 @@ npm run deploy
 
 1. Clone the repository:
 ```
-git clone git@labcase.softwareag.com:labcase/gp-event-chart.git
+git clone https://github.com/SoftwareAG/cumulocity-event-chart-widget.git
 ```
 2. Change directory:
 
@@ -298,12 +294,22 @@ Congratulations! Event Chart is configured.
 ![EventChartConfig](https://user-images.githubusercontent.com/67993842/92461930-76bc1b00-f1e7-11ea-9ccd-08760d34487e.PNG)
 
 1. Target Assets/Devices - deviceid/groupid of interest
-2. Group By- Parameter name from event object on which you want to group by
-3. Event Type - name of the event type for which you want chart
-4. Chart Type - type of chart that you want to display.
-5. Legend - position of legend you want or you choose none if you don't want to see legend
-6. Filter - Parameter name from event object, based on whose value the data will be further grouped and will be  displayed as group chart or stack chart
-
+2. Group By- provide the field name from the device managed object on which you want to group.
+  For eg.
+    * Set the value to Process if you want to group for each process 
+    * Set the value to date if you want to see the result for each date.
+    * set the value to time if you want to see the time chart.
+3. Event Type - name of the event type for which you want chart.
+  For eg.
+    * c8y_ProcessStatusUpdate
+    * s7y_BeaconLocationU
+4. Legend - position of legend you want or you choose none if you don't want to see legend
+5. Filter - provide the field name from event object, based on whose value the data will be filtered and will be displayed for each group selected in group by.
+  For eg.
+    * Set the value to classification if it is there in your event object. It will display the chart with different classsification for each group.
+6. Chart Type - type of chart that you want to display.
+  For eg.
+    * Stack chart will work only if filter ffield value is set in configuration.
                 
 One can also select the custom chart color and Border color to beautify the chart, if not default colors will be picked.
 

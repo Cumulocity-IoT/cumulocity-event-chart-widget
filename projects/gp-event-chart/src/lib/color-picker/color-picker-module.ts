@@ -32,8 +32,8 @@ import { ColorSliderComponent } from './color-slider/color-slider-component';
 
 
 @NgModule({
-  imports: [CommonModule, MatRadioModule],
+ /* imports: [CommonModule, MatRadioModule],
   declarations: [ColorPickerComponent, ColorSliderComponent, ColorPaletteComponent],
-  exports: [ColorPickerComponent],
+  exports: [ColorPickerComponent],*/
 })
 export class ColorPickerModule {}
