@@ -23,10 +23,8 @@ import { ChartsModule } from 'ng2-charts';
 import { GpLibEventChartConfig } from './gp-lib-event-chart.config';
 import {MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatButtonModule, MatRadioModule } from '@angular/material';
 import { DatePipe } from '@angular/common';
-import { ColorPickerModule } from './color-picker/color-picker-module';
 import * as preview from './preview-image';
 
-import '~styles/index.css';
 import { ColorPickerComponent } from './color-picker/color-picker-component';
 import { ColorSliderComponent } from './color-picker/color-slider/color-slider-component';
 import { ColorPaletteComponent } from './color-picker/color-palette/color-palette-component';

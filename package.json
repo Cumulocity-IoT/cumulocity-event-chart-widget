@@ -35,6 +35,7 @@
     "@c8y/style": "^1006.3.0",
     "chart.js": "^2.9.3",
     "gp-event-chart": "file:dist/gp-event-chart",
+    "gulp-inject-string": "^1.1.2",
     "moment": "^2.27.0",
     "ng2-charts": "^2.2.3",
     "rxjs": "~6.4.0",
