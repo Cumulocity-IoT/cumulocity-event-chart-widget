@@ -289,12 +289,12 @@ Congratulations! Event Chart is configured.
 ![EventChartConfig](https://user-images.githubusercontent.com/67993842/92461930-76bc1b00-f1e7-11ea-9ccd-08760d34487e.PNG)
 
 1. Target Assets/Devices - deviceid/groupid of interest
-2. Group By- provide the field name from the device managed object on which you want to group
+2. Group By- provide the field name from the device managed object on which you want to group.
   For eg.
     * Set the value to Process if you want to group for each process 
     * Set the value to date if you want to see the result for each date.
     * set the value to time if you want to see the time chart.
-3. Event Type - name of the event type for which you want chart
+3. Event Type - name of the event type for which you want chart.
   For eg.
     * c8y_ProcessStatusUpdate
     * s7y_BeaconLocationU
