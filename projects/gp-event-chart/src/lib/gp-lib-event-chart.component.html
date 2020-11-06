@@ -10,9 +10,9 @@
 	  </div>
 	<div class="datePickerDiv">
 		<mat-form-field appearance="outline" class="date-input">
-			<input matInput [matDatepicker]="fromPicker" placeholder="From"  (dateInput) ="dateChanged('from',$event)" [value]="fromDate"/>
-			<mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
-			<mat-datepicker #fromPicker></mat-datepicker>
+			<input matInput [matDatepicker]="fromPickerEventChart" placeholder="From"  (dateInput) ="dateChanged('from',$event)" [value]="fromDate"/>
+			<mat-datepicker-toggle matSuffix [for]="fromPickerEventChart"></mat-datepicker-toggle>
+			<mat-datepicker #fromPickerEventChart></mat-datepicker>
 		  </mat-form-field>
 			<mat-form-field appearance="outline" class="date-input">
 			  <input matInput [matDatepicker]="toPicker" placeholder="To" (dateInput) ="dateChanged('to',$event)" [value]="toDate" />

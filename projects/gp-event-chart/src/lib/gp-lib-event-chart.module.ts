@@ -35,7 +35,7 @@ import { ColorPaletteComponent } from './color-picker/color-palette/color-palett
     CoreModule,
     ChartsModule,
     MatInputModule,
-    MatFormFieldModule,
+    // MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,

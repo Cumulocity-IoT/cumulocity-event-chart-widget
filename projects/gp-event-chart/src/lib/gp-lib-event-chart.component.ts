@@ -237,7 +237,6 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
       type: this.config.eventType,
     };
     const { data, res, paging } = await this.events.list(filter);
-    console.log('data', data);
     const promises = data.map((singleRecord) => {
       if (this.fromDate === '' || this.toDate === '') {
         console.log('update data set called');
