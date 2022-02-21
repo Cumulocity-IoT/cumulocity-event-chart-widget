@@ -65,20 +65,6 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
 /** Sets the barchart type and barchart options for canvas and calls device list */
   ngOnInit() {
     if (isDevMode()) {
-
-       // // configuration for sandbox-ar.eu-latest.cumulocity.com
-
-       this.config = {
-        "legend": "top",
-        "groupby": "Process",
-        "eventType":"c8y_LocationUpdate",
-        "type": "bar",
-        "device": {
-          "name": "Storage Facility 1-Tank 1",
-          "id": "36848514"
-        },
-       
-      }
     }
 
 

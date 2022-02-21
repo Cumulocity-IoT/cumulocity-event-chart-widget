@@ -37,21 +37,7 @@
 		</div>
 	 
 
-	<!-- <div class="datePickerDiv">
-		<mat-form-field appearance="outline" class="date-input">
-			<input matInput [matDatepicker]="fromPickerEventChart" placeholder="From"  (dateInput) ="dateChanged('from',$event)" [value]="fromDate"/>
-			<mat-datepicker-toggle matSuffix [for]="fromPickerEventChart"></mat-datepicker-toggle>
-			<mat-datepicker #fromPickerEventChart></mat-datepicker>
-		  </mat-form-field>
-			<mat-form-field appearance="outline" class="date-input">
-			  <input matInput [matDatepicker]="toPicker" placeholder="To" (dateInput) ="dateChanged('to',$event)" [value]="toDate" />
-			  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
-			  <mat-datepicker #toPicker></mat-datepicker>
-		  </mat-form-field>
-		  <button type="button" title="Filter date range" class="btn btn-default " (click)="filter()">
-			<i c8y-icon="filter" class="fa fw fa-filter"></i>
-		  </button>
-	</div> -->
+	
 	<div *ngIf="dataLoaded | async">
 		<div style="display: block">
 			<canvas baseChart
