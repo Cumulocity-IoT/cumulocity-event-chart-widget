@@ -69,13 +69,13 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
        // // configuration for sandbox-ar.eu-latest.cumulocity.com
 
        this.config = {
-        "legend": "Top",
-        "groupby": "c8y_Hardware.model",
-        //"eventType":"",
-        "type": "Vertical Bar Chart",
+        "legend": "top",
+        "groupby": "Process",
+        "eventType":"c8y_LocationUpdate",
+        "type": "bar",
         "device": {
           "name": "Storage Facility 1-Tank 1",
-          "id": "86971793"
+          "id": "36848514"
         },
        
       }
@@ -193,9 +193,8 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   }
   /** when filter button is clicked device list is called for the selected dates */
   filter() {
-    this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
-    this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
-    this.toDate = this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
+ //   this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
+ //   this.toDate = this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
     this.getDeviceList();
   }
 

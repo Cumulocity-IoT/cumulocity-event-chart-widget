@@ -21,16 +21,12 @@ import { NgModule } from '@angular/core';
 import { GpLibEventChartComponent } from './gp-lib-event-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { GpLibEventChartConfig } from './gp-lib-event-chart.config';
-import { Component } from '@angular/core';
  
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatRadioModule} from '@angular/material/radio';
 
 
 import { DatePipe } from '@angular/common';
 import * as preview from './preview-image';
-import {MatInputModule} from '@angular/material/input';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ColorPickerComponent } from './color-picker/color-picker-component';
 import { ColorSliderComponent } from './color-picker/color-slider/color-slider-component';
@@ -41,9 +37,6 @@ import { ColorPaletteComponent } from './color-picker/color-palette/color-palett
   imports: [
     CoreModule,
     ChartsModule,
-    MatInputModule,
-    // MatFormFieldModule,
-    MatRadioModule,
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],

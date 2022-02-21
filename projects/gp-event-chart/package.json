@@ -1,6 +1,6 @@
 {
   "name": "gp-event-chart",
-  "version": "2.0.1",
+  "version": "1.0.1",
   "description": "This is an Angular 11 widget, which is designed to display the chart for the specific event type. ",
   "author": "Khushi Khanna - Software AG, Global Presales",
   "license": "Apache 2.0",
