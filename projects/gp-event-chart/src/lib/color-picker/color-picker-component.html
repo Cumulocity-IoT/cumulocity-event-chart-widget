@@ -1,7 +1,11 @@
-<mat-radio-group aria-label="Select an option" (change) ="colorType = $event.value" >
+<!-- <mat-radio-group aria-label="Select an option" (change) ="colorType = $event.value" >
   <mat-radio-button  checked="true" value="rgba">RGBA</mat-radio-button>
   <mat-radio-button value="hexa">HEXA</mat-radio-button>
-</mat-radio-group>
+</mat-radio-group> -->
+<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel" [disabled]="modelGroupDisabled">
+  <label  btnRadio="Select an option">Select an option</label>
+  
+</div>
 <div class="color-wrapper">
 
     <app-color-palette [hue]="hue" (color)="color = $event" ></app-color-palette> 

@@ -1,3 +1,4 @@
+
 <div > 
 	<div style="height: 40px;">
 		<div style ="float: right; margin-right: 10px;">
@@ -8,7 +9,41 @@
 		  <button mat-icon-button style="color:#1776BF;" type="button" class="button" (click) = "refresh()" ><span class="fa fa-refresh"></span></button>
 		  </div>
 	  </div>
-	<div class="datePickerDiv">
+
+	  <div class="datePickerDiv">
+		<input
+		  class="date-input"
+		  placeholder="From"
+		  [bsConfig]="{ customTodayClass: 'today' }"
+		  (ngModelChange)="dateChanged('from',$event)" 
+		  [(ngModel)]="fromDate"
+		  [maxDate]="minCurrentDate"
+		  title="From Date"
+		  [value]="fromDate"
+		  bsDatepicker	/>
+		  
+		  
+		  <input
+		  class="date-input"
+		  placeholder="To"
+		  [bsConfig]="{ customTodayClass: 'today' }"
+		  (ngModelChange)="dateChanged('from',$event)" 
+		  [(ngModel)]="toDate"
+		  [minDate]="minToDate" 
+		  [maxDate]="currentDate"
+		  title="To Date"
+		  
+		  [value]="toDate"
+		  bsDatepicker
+		  />
+		
+		  <button type="button" title="Filter date range" class="btn btn-default " (click)="filter()">
+			<i c8y-icon="filter" class="fa fw fa-filter"></i>
+		  </button>
+		</div>
+	 
+
+	<!-- <div class="datePickerDiv">
 		<mat-form-field appearance="outline" class="date-input">
 			<input matInput [matDatepicker]="fromPickerEventChart" placeholder="From"  (dateInput) ="dateChanged('from',$event)" [value]="fromDate"/>
 			<mat-datepicker-toggle matSuffix [for]="fromPickerEventChart"></mat-datepicker-toggle>
@@ -22,7 +57,7 @@
 		  <button type="button" title="Filter date range" class="btn btn-default " (click)="filter()">
 			<i c8y-icon="filter" class="fa fw fa-filter"></i>
 		  </button>
-	</div>
+	</div> -->
 	<div *ngIf="dataLoaded | async">
 		<div style="display: block">
 			<canvas baseChart

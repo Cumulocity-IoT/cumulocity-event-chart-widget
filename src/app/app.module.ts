@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule  } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { CoreModule } from '@c8y/ngx-components';
 import { AppComponent } from './app.component';
 import { BasicAuth, Client, InventoryService, EventService, Realtime } from '@c8y/client';
 import { GpLibEventChartModule } from '../../projects/gp-event-chart/src/lib/gp-lib-event-chart.module';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const auth = new BasicAuth({
   user: '',
   password: '',
@@ -39,7 +39,9 @@ const fetchClient = client.core;
   ],
   imports: [
     BrowserModule,
-    GpLibEventChartModule
+    GpLibEventChartModule,
+    BrowserAnimationsModule,
+    CoreModule.forRoot()
   ],
   providers: [
     {

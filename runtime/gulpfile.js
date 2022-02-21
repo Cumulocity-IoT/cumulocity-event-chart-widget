@@ -8,17 +8,14 @@ const execSync = require('child_process').execSync;
 const replace = require('gulp-replace');
 const path = require('path');
 const inject = require('gulp-inject-string');
-const pkgJson = require('./dist/widget-library/package.json');
-
-
-
+const pkgJson = require('./package.json');
 function clean() {
     return del(['dist']);
 }
 
 const compile = series(
     function buildAngularLibrary() { return ngPackagr.build({project: './ng-package.json'}) },
-    function separateWebpackBuildSrc() { return fs.copy('./dist/widget-library/fesm5', './dist/bundle-src') },
+    function separateWebpackBuildSrc() { return fs.copy('./dist/widget-library/fesm2015', './dist/bundle-src') },
     function importCustomCss() {
         return src(['./dist/bundle-src/custom-widget.js'])
         .pipe(inject.before('import', "import '~styles/index.css';\n"))
