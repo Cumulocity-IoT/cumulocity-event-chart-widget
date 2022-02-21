@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy, isDevMode } from '@angular/core';
 import { EventService, InventoryService, Realtime } from '@c8y/client';
 import * as moment_ from 'moment';
 import { DatePipe } from '@angular/common';
@@ -64,7 +64,26 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   ) {}
 /** Sets the barchart type and barchart options for canvas and calls device list */
   ngOnInit() {
+    if (isDevMode()) {
+
+       // // configuration for sandbox-ar.eu-latest.cumulocity.com
+
+       this.config = {
+        "legend": "Top",
+        "groupby": "c8y_Hardware.model",
+        //"eventType":"",
+        "type": "Vertical Bar Chart",
+        "device": {
+          "name": "Storage Facility 1-Tank 1",
+          "id": "86971793"
+        },
+       
+      }
+    }
+
+
     this.barChartType = this.config.type;
+  
     if (this.config.type === 'stackChart') {
       this.barChartType = 'bar';
       // tslint:disable-next-line: no-string-literal
@@ -174,6 +193,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   }
   /** when filter button is clicked device list is called for the selected dates */
   filter() {
+    this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
     this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
     this.toDate = this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
     this.getDeviceList();

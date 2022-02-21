@@ -16,10 +16,11 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
 
+import { Injectable } from '@angular/core';
+import {InventoryService} from '@c8y/client';
 @Injectable()
 export class GpLibEventChartService {
 
-  constructor() { }
+  constructor(public inventory: InventoryService) { }
 }

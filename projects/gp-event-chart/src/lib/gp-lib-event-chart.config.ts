@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -27,6 +27,7 @@ import { Component, OnInit, Input } from '@angular/core';
 // tslint:disable-next-line: component-class-suffix
 export class GpLibEventChartConfig implements OnInit {
   @Input() config: any = {};
+  @Output() configData: EventEmitter<any> = new EventEmitter();
   isOpenCP = false;
   borderCP = false;
 
@@ -67,5 +68,10 @@ export class GpLibEventChartConfig implements OnInit {
     } else {
       this.config.borderColor = value;
     }
+  }
+  SubmitData() {
+
+    this.configData.emit(this.config);
+  
   }
 }
