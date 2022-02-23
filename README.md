@@ -28,7 +28,6 @@
 | 1.3.x              | >= 1011.x.x| 2.x.x                 |
 | 1.2.x              | 1010.x.x   | 1.x.x                 |  
 
-## Usecase
 
 ![eventchart](https://user-images.githubusercontent.com/89508319/155273813-dbb310c6-78d4-49f6-b258-1fb7916e2c53.JPG)
 
