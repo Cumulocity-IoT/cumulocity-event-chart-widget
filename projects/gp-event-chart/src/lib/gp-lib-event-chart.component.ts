@@ -22,6 +22,7 @@ import * as moment_ from 'moment';
 import { DatePipe } from '@angular/common';
 import { skip, takeUntil } from 'rxjs/operators';
 import { from, Subject } from 'rxjs';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 const moment = moment_;
 @Component({
   selector: 'lib-gp-lib-event-chart',
@@ -32,6 +33,7 @@ const moment = moment_;
 export class GpLibEventChartComponent implements OnInit, OnDestroy {
   @Input() config;
   dataLoaded: Promise<boolean>;
+  dataSetHasData = false;
   fromDate = '';
   toDate = '';
   colorsArr = [];
@@ -61,16 +63,17 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
     private inventory: InventoryService,
     public datepipe: DatePipe,
     public realtimeService: Realtime
-  ) {}
-/** Sets the barchart type and barchart options for canvas and calls device list */
+  ) { }
+  /** Sets the barchart type and barchart options for canvas and calls device list */
   ngOnInit() {
     if (isDevMode()) {
     }
 
 
     this.barChartType = this.config.type;
-  
+
     if (this.config.type === 'stackChart') {
+      console.log(this.barChartType)
       this.barChartType = 'bar';
       // tslint:disable-next-line: no-string-literal
       this.barChartOptions['scales'] = {
@@ -85,7 +88,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
           },
         ],
       };
-    } else if (this.config.type === 'line' || this.config.type === 'horizontalBar' || this.config.type === 'bar')  {
+    } else if (this.config.type === 'line' || this.config.type === 'horizontalBar' || this.config.type === 'bar') {
       // tslint:disable-next-line: no-string-literal
       this.barChartOptions['scales'] = {
         xAxes: [
@@ -125,6 +128,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   /** sets the chart color and border color based on configuration */
   setChartColors() {
     let borderColor = [];
+    console.log(this.barChartType);
     if (this.config.color !== undefined) {
       this.colorsArr = this.config.color.split(';');
       if (
@@ -148,13 +152,15 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
             borderColor,
           });
         }
-      }  else if (this.barChartType !== 'pie' && this.barChartType !== 'doughnut' && this.barChartType !== 'polarArea') {
+      } else if (this.barChartType !== 'pie' && this.barChartType !== 'doughnut' && this.barChartType !== 'polarArea') {
         this.barChartColors = [{
           backgroundColor: this.colorsArr[0],
           borderColor: borderColor.length > 0 ? borderColor[0] : borderColor
         }];
 
       } else if (this.barChartData[0].data.length <= this.colorsArr.length) {
+        console.log(this.barChartData.length);
+        console.log(this.barChartData);
         if (borderColor.length < this.barChartData[0].data.length) {
           borderColor = [];
         }
@@ -169,7 +175,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
       this.barChartColors = [];
     }
   }
-/** On selcting date from date picker this function is called */
+  /** On selcting date from date picker this function is called */
   dateChanged(x, event) {
     if (x === 'from') {
       this.fromDate = event.value;
@@ -179,8 +185,8 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   }
   /** when filter button is clicked device list is called for the selected dates */
   filter() {
- //   this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
- //   this.toDate = this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
+    //   this.fromDate = this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
+    //   this.toDate = this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
     this.getDeviceList();
   }
 
@@ -199,6 +205,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
       if (devicesAll.length === 0) {
         dataSet = await this.fetchEvents(response.id, dataSet);
         this.fetchRealtimeEvents(response.id, dataSet);
+
         this.createChart(dataSet);
       } else {
         const promises = devicesAll.map(async (device) => {
@@ -206,36 +213,41 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
           this.fetchRealtimeEvents(device.managedObject.id, dataSet);
         });
         await Promise.all(promises);
-        this.createChart(dataSet);
+        if (Object.keys(dataSet).length > 0) {
+          this.createChart(dataSet);
+          this.dataSetHasData = true;
+        } else {
+          this.dataSetHasData = false;
+        }
       }
     }
   }
   /** this function fetches the eventas at realtime */
- fetchRealtimeEvents(deviceId, dataSet) {
-  const eventURL = `/events/` + deviceId;
-  const sub = this.realtimeService
-  .subscribe(eventURL, (response) => {
-    if (this.realtimeState) {
-      if (response && response.data) {
-       const singleEvent = response.data.data;
-       if (singleEvent.type === this.config.eventType) {
-       if (this.fromDate === '' || this.toDate === '') {
-        dataSet = this.updateDataset(singleEvent, dataSet);
-        this.createChart(dataSet);
-      } else if (  Date.parse(singleEvent.creationTime) > Date.parse(this.fromDate) &&
-       Date.parse(singleEvent.creationTime) < Date.parse(this.toDate)) {
-        dataSet = this.updateDataset(response.data.data, dataSet);
-        this.createChart(dataSet);
-      }
-      }
-      }
-    }
-  });
-  this.realTimeEventSubArray.push(sub);
-}
+  fetchRealtimeEvents(deviceId, dataSet) {
+    const eventURL = `/events/` + deviceId;
+    const sub = this.realtimeService
+      .subscribe(eventURL, (response) => {
+        if (this.realtimeState) {
+          if (response && response.data) {
+            const singleEvent = response.data.data;
+            if (singleEvent.type === this.config.eventType) {
+              if (this.fromDate === '' || this.toDate === '') {
+                dataSet = this.updateDataset(singleEvent, dataSet);
+                this.createChart(dataSet);
+              } else if (Date.parse(singleEvent.creationTime) > Date.parse(this.fromDate) &&
+                Date.parse(singleEvent.creationTime) < Date.parse(this.toDate)) {
+                dataSet = this.updateDataset(response.data.data, dataSet);
+                this.createChart(dataSet);
+              }
+            }
+          }
+        }
+      });
+    this.realTimeEventSubArray.push(sub);
+  }
 
-/** Fetches the events using Event Service for the given device and particular event type */
-   async fetchEvents(deviceId, dataSet) {
+  /** Fetches the events using Event Service for the given device and particular event type */
+  async fetchEvents(deviceId, dataSet) {
     const filter = {
       pageSize: 2000,
       source: deviceId,
@@ -246,8 +258,8 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
       if (this.fromDate === '' || this.toDate === '') {
         console.log('update data set called');
         dataSet = this.updateDataset(singleRecord, dataSet);
-      } else if ( Date.parse(singleRecord.creationTime) > Date.parse(this.fromDate) &&
-      Date.parse(singleRecord.creationTime) < Date.parse(this.toDate)) {
+      } else if (Date.parse(singleRecord.creationTime) > Date.parse(this.fromDate) &&
+        Date.parse(singleRecord.creationTime) < Date.parse(this.toDate)) {
         console.log('update data set called');
         dataSet = this.updateDataset(singleRecord, dataSet);
       }
@@ -255,7 +267,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
     await Promise.all(promises);
     return dataSet;
   }
-/** based on the configuration and event record dataset is created  */
+  /** based on the configuration and event record dataset is created  */
   updateDataset(singleRecord, dataSet) {
     if (this.config.filter !== undefined && this.config.filter !== '') {
       if (this.config.groupby === 'days') {
@@ -308,6 +320,7 @@ export class GpLibEventChartComponent implements OnInit, OnDestroy {
   /** Dataset is sorted and passed to barchart dat in required format */
   createChart(dataSet) {
     console.log('createChart called');
+    console.log(dataSet, 'dataset');
     let sortedArray = [];
     if (this.config.groupby === 'hours') {
       sortedArray = Object.keys(dataSet).sort((a, b) => {
