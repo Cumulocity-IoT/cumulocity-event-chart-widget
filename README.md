@@ -30,8 +30,7 @@
 
 ## Usecase
 
-![EventChart](https://user-images.githubusercontent.com/67993842/92461743-3fe60500-f1e7-11ea-8ce2-44b7637c325a.png)
-
+![eventchart](https://user-images.githubusercontent.com/89508319/155273813-dbb310c6-78d4-49f6-b258-1fb7916e2c53.JPG)
 
 ## Features
 
