@@ -1,7 +1,5 @@
 # Cumulocity Widget - Event Chart [<img width="35" src="https://user-images.githubusercontent.com/67993842/97668428-f360cc80-1aa7-11eb-8801-da578bda4334.png"/>](https://github.com/SoftwareAG/cumulocity-event-chart-widget/releases/download/2.0.0/event-chart-runtime-widget-2.0.0.zip)
 
-##  Overview
-
   This is an Angular widget, which is designed to display the chart for the specific event type. It groups the events based on the entered group by parameter and displays the count for each group by parameter value. To display event chart for days enter the group by parameter as 'days' in configuration.
 
 
