@@ -36,7 +36,7 @@
 *  **Supports Grouped charts and stack Charts:** Based on filter type selected in configuration.
 *  **Supports different flavors charts:** Based on chart type field in configuration.
 
-## Supported Cumulocity Environments:**
+## Supported Cumulocity Environments:
   
 *  **App Builder:** Tested with Cumulocity App Builder version 1.3.0
   
