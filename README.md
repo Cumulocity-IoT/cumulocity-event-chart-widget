@@ -2,6 +2,8 @@
 
   This is an Angular widget, which is designed to display the chart for the specific event type. It groups the events based on the entered group by parameter and displays the count for each group by parameter value. To display event chart for days enter the group by parameter as 'days' in configuration.
 
+### ⚠️ This project is no longer under development. Please use [cumulocity-event-chart-widget-plugin](https://github.com/SoftwareAG/cumulocity-event-chart-widget-plugin) for Application Builder >=2.x.x and Cumulocity >=1016.x.x⚠️
+
 
   The charts available include
   * Vertical Bar Chart
